@@ -42,6 +42,5 @@ cat << EOF > "${plist_filepath}"
 </plist>
 EOF
 
-set -x
 launchctl bootout gui/$(id -u) "${plist_filepath}" 2>/dev/null || true
 launchctl bootstrap gui/$(id -u) "${plist_filepath}"
