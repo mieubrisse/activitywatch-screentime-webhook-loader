@@ -1,6 +1,6 @@
 ActivityWatch Screentime Webhook Loader
 ========================================
-This repo contains a small script, `load-screentime-data.sh`, to pull your screentime data from an [ActivityWatch](https://activitywatch.net/) server running locally and POST it to a webhook using basic auth (which in my case is [n8n](https://n8n.io/), but could be anything).
+This repo contains a small script, `load-screentime-data.sh`, to pull your screentime data from an [ActivityWatch](https://activitywatch.net/) server running locally and POST it to a webhook using basic auth. My webhook is [n8n](https://n8n.io/), but yours could be anything.
 
 Screentime is defined as any time in which you're not AFK, and not seeing the login screen or [LookAway](https://lookaway.app/).
 
@@ -15,6 +15,8 @@ It expects the following environment variables to be set:
 If a `${HOME}/.load-screentime-data.env` file exists, it will be sourced before the script runs. You can put environment variable values there.
 
 This repo also contains an `install-plist.sh` script which on MacOS will schedule `load-screentime-data.sh` to run every 6 hours.
+
+It is idempotent; you can rerun it as many times as you need.
 
 ### Usage
 1. Clone this repo 

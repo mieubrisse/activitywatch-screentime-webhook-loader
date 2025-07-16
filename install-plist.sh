@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Idemoptently reinstalls the load-screentime-data.sh command
+
 set -euo pipefail
 script_dirpath="$(cd "$(dirname "${0}")" && pwd)"
 
@@ -40,4 +42,6 @@ cat << EOF > "${plist_filepath}"
 </plist>
 EOF
 
-
+set -x
+launchctl bootout gui/$(id -u) "${plist_filepath}" 2>/dev/null || true
+launchctl bootstrap gui/$(id -u) "${plist_filepath}"
