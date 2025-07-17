@@ -68,4 +68,4 @@ EOF
 # run_query "$afk_query" | jq . > aw_not_afk.json
 data="$(run_query "${not_afk_query}" | jq -c .[0])"  # For some reason this comes as an array nested in an array
 
-curl -XPOST -H "Content-Type: application/json" -u "${WEBHOOK_USERNAME}:${WEBHOOK_PASSWORD}' "${WEBHOOK_URL}" -d "${data}"
+curl -XPOST -H "Content-Type: application/json" -u "${WEBHOOK_USERNAME}:${WEBHOOK_PASSWORD}" "${WEBHOOK_URL}" -d "${data}"
