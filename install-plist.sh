@@ -5,7 +5,8 @@
 set -euo pipefail
 script_dirpath="$(cd "$(dirname "${0}")" && pwd)"
 
-load_script_filepath="${script_dirpath}/load-screentime-data.sh"
+load_script_filename="load-screentime-data.sh"
+load_script_filepath="${script_dirpath}/${load_script_filename}"
 
 if ! [ -f "${load_script_filepath}" ]; then
     echo "Error: No load script found at: ${load_script_filepath}" >&2
@@ -27,6 +28,7 @@ cat << EOF > "${plist_filepath}"
 
     <key>ProgramArguments</key>
     <array>
+        <string>/bin/bash</string>
         <string>${load_script_filepath}</string>
     </array>
 
@@ -38,6 +40,11 @@ cat << EOF > "${plist_filepath}"
         <dict><key>Hour</key><integer>12</integer><key>Minute</key><integer>0</integer></dict>
         <dict><key>Hour</key><integer>18</integer><key>Minute</key><integer>0</integer></dict>
     </array>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/${load_script_filename}.out</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/${load_script_filename}.err</string>
 </dict>
 </plist>
 EOF
